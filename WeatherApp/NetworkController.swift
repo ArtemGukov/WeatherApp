@@ -10,11 +10,13 @@ import UIKit
 
 var url = Url()
 
-class NetworkControllerCurrent {
+class NetworkController {
 
-    static let shared = NetworkControllerCurrent()
+    static let shared = NetworkController()
 
-    func fetchCityData(searchTerm: String, completion: @escaping (CurrentWeatherCity?) -> Void) {
+    //    MARK: - Custom methods
+    
+    func fetchCityDataCurrent(searchTerm: String, completion: @escaping (CurrentWeatherCity?) -> Void) {
     
         guard let urlCity = URL(string: url.base + url.current + searchTerm + url.appKey) else {
             
@@ -31,13 +33,8 @@ class NetworkControllerCurrent {
             }
         }.resume()
     }
-}
-
-class NetworkControllerForecast {
     
-    static let shared = NetworkControllerForecast()
-    
-    func fetchCityData(searchTerm: String, completion: @escaping (ForecastWeatherCity?) -> Void) {
+    func fetchCityDataForecast(searchTerm: String, completion: @escaping (ForecastWeatherCity?) -> Void) {
         
         guard let urlCity = URL(string: url.base + url.forecast5 + searchTerm + url.appKey) else {
             
@@ -49,13 +46,12 @@ class NetworkControllerForecast {
             if let data = data, let jsonData = try? JSONDecoder().decode(ForecastWeatherCity.self, from: data) {
                 
                 completion(jsonData)
-
+                
             } else {
                 
                 completion(nil)
                 
             }
-            
         }.resume()
     }
 }

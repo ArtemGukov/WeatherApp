@@ -10,9 +10,13 @@ import UIKit
 
 class DetailCityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    //    MARK: - Properties
+    
     var currentWeather: CurrentWeatherCity!
     var forecastWeather = [ForecastWeatherCity]()
     var url = Url()
+    
+    //    MARK: - Outlets
     
     @IBOutlet weak var segmentControlWeather: UISegmentedControl!
     
@@ -42,21 +46,21 @@ class DetailCityViewController: UIViewController, UITableViewDelegate, UITableVi
         stackviewCurrent.isHidden = false
     }
     
+    //    MARK: - Custom methods
+
     func updateUI(cityName: String) {
         
         let newSearchTerm = cityName.replacingOccurrences(of: " ", with: "%20")
 
         switch segmentControlWeather.selectedSegmentIndex {
-            
         case 0:
             configureCurrentUI()
     
         case 1:
-            
             tableViewForecast.isHidden = false
             stackviewCurrent.isHidden = true
             
-            NetworkControllerForecast.shared.fetchCityData(searchTerm: newSearchTerm) { (forecastWeather) in
+            NetworkController.shared.fetchCityDataForecast(searchTerm: newSearchTerm) { (forecastWeather) in
                 
                 DispatchQueue.main.async {
                     
@@ -70,6 +74,8 @@ class DetailCityViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    // MARK: - Table view data source
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
                 
         var data: Int = 0
@@ -85,16 +91,14 @@ class DetailCityViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellTwo", for: indexPath)
         
         for i in forecastWeather {
-            
             let result = i.list![indexPath.row]
-            
             configureForecastUI(cell: cell, with: result)
-            
-            
         }
         
         return cell
     }
+    
+    //    MARK: - IBActions
     
     @IBAction func segmentControlPressed(_ sender: UISegmentedControl) {
         

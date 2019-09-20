@@ -10,6 +10,8 @@ import UIKit
 
 class CityMainTableViewCell: UITableViewCell {
 
+    //    MARK: - Outlets
+
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     

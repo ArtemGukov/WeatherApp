@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension SearchTableViewController {
+extension SearchViewController {
     func configure(cell: UITableViewCell, with current: CurrentWeatherCity) {
         
         cell.textLabel!.text = current.name

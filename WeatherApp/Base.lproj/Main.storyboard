@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Cities-->
+        <!--Locations-->
         <scene sceneID="ecc-HM-DLp">
             <objects>
                 <tableViewController id="Gu5-YM-wpO" customClass="MainTableViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -74,10 +74,10 @@
                             <outlet property="delegate" destination="Gu5-YM-wpO" id="EdF-kk-VE1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Cities" id="IGI-eg-aBV">
+                    <navigationItem key="navigationItem" title="Locations" id="IGI-eg-aBV">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="IGZ-Yu-6ai">
                             <connections>
-                                <segue destination="mZv-fm-Be9" kind="show" identifier="addSegue" id="N8R-s7-y5m"/>
+                                <segue destination="1d4-CH-FsN" kind="show" id="KFi-ri-Xz9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -86,77 +86,115 @@
             </objects>
             <point key="canvasLocation" x="2602.5" y="1722.8873239436621"/>
         </scene>
-        <!--Search Table View Controller-->
-        <scene sceneID="d6T-hR-zPx">
+        <!--New location-->
+        <scene sceneID="6MY-tC-8Z4">
             <objects>
-                <tableViewController id="mZv-fm-Be9" customClass="SearchTableViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="3ft-jd-wzv">
+                <viewController id="1d4-CH-FsN" customClass="SearchViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bev-F3-Xya">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Enter city / index / id" id="cYR-br-4dA">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <scopeButtonTitles>
-                                <string>Title</string>
-                            </scopeButtonTitles>
-                            <connections>
-                                <outlet property="delegate" destination="3ft-jd-wzv" id="ErU-se-CzS"/>
-                            </connections>
-                        </searchBar>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="f1m-cq-o5Z" detailTextLabel="dv4-0u-UKa" style="IBUITableViewCellStyleValue1" id="Mwq-su-Q3l">
-                                <rect key="frame" x="0.0" y="111.5" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mwq-su-Q3l" id="1TT-qK-dJd">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f1m-cq-o5Z">
-                                            <rect key="frame" x="16" y="12" width="33.5" height="20.5"/>
+                        <subviews>
+                            <searchBar hidden="YES" contentMode="redraw" searchBarStyle="minimal" placeholder="Enter city / index / id" translatesAutoresizingMaskIntoConstraints="NO" id="xeU-Mf-5hI">
+                                <rect key="frame" x="0.0" y="100" width="320" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sAO-VZ-4yz">
+                                <rect key="frame" x="0.0" y="164" width="320" height="404"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="YUN-j6-0V2" detailTextLabel="195-1V-yLB" style="IBUITableViewCellStyleValue1" id="830-TQ-0Qm">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="830-TQ-0Qm" id="cSy-vG-4Jw">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dv4-0u-UKa">
-                                            <rect key="frame" x="260" y="12" width="44" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="mZv-fm-Be9" id="qUV-b0-MAe"/>
-                            <outlet property="delegate" destination="mZv-fm-Be9" id="7fQ-xj-Bsw"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="5g3-pp-5zR">
-                        <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vMw-u7-GWz">
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YUN-j6-0V2">
+                                                    <rect key="frame" x="15" y="12" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="195-1V-yLB">
+                                                    <rect key="frame" x="246" y="12" width="59" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="1d4-CH-FsN" id="VjE-RK-TcX"/>
+                                    <outlet property="delegate" destination="1d4-CH-FsN" id="HhE-yL-Mup"/>
+                                </connections>
+                            </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DG5-ng-HDV">
+                                <rect key="frame" x="0.0" y="64" width="320" height="29"/>
+                                <segments>
+                                    <segment title="Search"/>
+                                    <segment title="Location"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentControllerPressed:" destination="1d4-CH-FsN" eventType="valueChanged" id="h0N-IE-meh"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w71-DW-pj4">
+                                <rect key="frame" x="8" y="107" width="304" height="42"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Use my location">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonMyLocayionPressed:" destination="1d4-CH-FsN" eventType="touchUpInside" id="Rsc-sK-hLt"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xeU-Mf-5hI" firstAttribute="leading" secondItem="C2C-wj-MKx" secondAttribute="leading" id="5p0-pq-GKC"/>
+                            <constraint firstItem="DG5-ng-HDV" firstAttribute="top" secondItem="C2C-wj-MKx" secondAttribute="top" id="8Ye-io-bRL"/>
+                            <constraint firstItem="DG5-ng-HDV" firstAttribute="leading" secondItem="C2C-wj-MKx" secondAttribute="leading" id="DdY-3T-aE1"/>
+                            <constraint firstItem="sAO-VZ-4yz" firstAttribute="bottom" secondItem="C2C-wj-MKx" secondAttribute="bottom" id="GcW-uH-AW9"/>
+                            <constraint firstItem="xeU-Mf-5hI" firstAttribute="trailing" secondItem="C2C-wj-MKx" secondAttribute="trailing" id="KgA-mg-v0B"/>
+                            <constraint firstItem="C2C-wj-MKx" firstAttribute="trailing" secondItem="w71-DW-pj4" secondAttribute="trailing" constant="8" id="OB3-s0-NEI"/>
+                            <constraint firstItem="xeU-Mf-5hI" firstAttribute="top" secondItem="DG5-ng-HDV" secondAttribute="bottom" constant="8" id="QFg-tb-lon"/>
+                            <constraint firstItem="sAO-VZ-4yz" firstAttribute="top" secondItem="xeU-Mf-5hI" secondAttribute="bottom" constant="8" id="YXU-MX-UIY"/>
+                            <constraint firstItem="w71-DW-pj4" firstAttribute="top" secondItem="DG5-ng-HDV" secondAttribute="bottom" constant="15" id="eMC-V5-cDb"/>
+                            <constraint firstItem="sAO-VZ-4yz" firstAttribute="top" secondItem="w71-DW-pj4" secondAttribute="bottom" constant="15" id="r2q-pe-oPm"/>
+                            <constraint firstItem="sAO-VZ-4yz" firstAttribute="leading" secondItem="C2C-wj-MKx" secondAttribute="leading" id="t6y-7N-RrB"/>
+                            <constraint firstItem="sAO-VZ-4yz" firstAttribute="trailing" secondItem="C2C-wj-MKx" secondAttribute="trailing" id="t7q-s0-oiw"/>
+                            <constraint firstItem="w71-DW-pj4" firstAttribute="leading" secondItem="C2C-wj-MKx" secondAttribute="leading" constant="8" id="wT7-9F-90X"/>
+                            <constraint firstItem="DG5-ng-HDV" firstAttribute="trailing" secondItem="C2C-wj-MKx" secondAttribute="trailing" id="zg3-4d-1EW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="C2C-wj-MKx"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New location" id="2mX-R5-5EF">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="mSi-W1-Fic">
                             <connections>
-                                <segue destination="dlR-GL-Nql" kind="unwind" identifier="cancelSegue" unwindAction="cancelPressed:" id="Wyz-Zq-4Ba"/>
+                                <segue destination="UBF-6w-7Xh" kind="unwind" identifier="cancelSegue" unwindAction="cancelPressed:" id="WXA-Qc-b6g"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="rVk-la-mSV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="DFq-pl-tZf">
                             <connections>
-                                <segue destination="dlR-GL-Nql" kind="unwind" identifier="saveSegue" unwindAction="savePressed:" id="2Yh-En-fgi"/>
+                                <segue destination="UBF-6w-7Xh" kind="unwind" identifier="saveSegue" unwindAction="savePressed:" id="QJk-CJ-k5j"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchBar" destination="cYR-br-4dA" id="Hxr-5W-RE5"/>
+                        <outlet property="buttonMyLocation" destination="w71-DW-pj4" id="CdU-Mb-MBp"/>
+                        <outlet property="searchBar" destination="xeU-Mf-5hI" id="ieL-sd-Zgz"/>
+                        <outlet property="segmentedController" destination="DG5-ng-HDV" id="FWJ-ua-IHG"/>
+                        <outlet property="tableViewSearch" destination="sAO-VZ-4yz" id="x6l-D1-hXa"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Lcy-hN-735" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="dlR-GL-Nql" userLabel="Exit" sceneMemberID="exit"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rzF-EK-WFC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="UBF-6w-7Xh" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2603" y="2608"/>
+            <point key="canvasLocation" x="2603" y="2593"/>
         </scene>
         <!--Detail City View Controller-->
         <scene sceneID="yW5-F9-q4I">

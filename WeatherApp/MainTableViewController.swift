@@ -9,9 +9,9 @@
 import UIKit
 
 class MainTableViewController: UITableViewController {
-
-    //let activityIndicator = UIActivityIndicatorView(style: .gray)
     
+    //    MARK: - Properties
+
     var saveCities = [CurrentWeatherCity]()
     var url = Url()
     
@@ -20,8 +20,6 @@ class MainTableViewController: UITableViewController {
         
         loadSample(searchTerm: "saint petersburg")
         loadSample(searchTerm: "moscow")
-        loadSample(searchTerm: "madrid")
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,11 +28,13 @@ class MainTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    //    MARK: - Custom methods
+
     func loadSample(searchTerm: String) {
         
         let newSearchTerm = searchTerm.replacingOccurrences(of: " ", with: "%20")
         
-        NetworkControllerCurrent.shared.fetchCityData(searchTerm: newSearchTerm) { (saveCities) in
+        NetworkController.shared.fetchCityDataCurrent(searchTerm: newSearchTerm) { (saveCities) in
             if let saveCities = saveCities {
                 self.updateUI(with: [saveCities])
             }
@@ -50,7 +50,7 @@ class MainTableViewController: UITableViewController {
         }
     }
     
-    // MARK: - Table view data source
+    //    MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -70,6 +70,24 @@ class MainTableViewController: UITableViewController {
         return true
     }
     
+    //    MARK: - Delete rows
+
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
+        
+            print("Delete tapped")
+            
+            self.saveCities.remove(at: indexPath.row)
+            tableView.reloadData()
+            
+        })
+            
+            deleteAction.backgroundColor = UIColor.red
+            return [deleteAction]
+        }
+    
+    //    MARK: - Navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "detailSegue" else { return }
         guard let controller = segue.destination as? DetailCityViewController else { return }
@@ -80,6 +98,8 @@ class MainTableViewController: UITableViewController {
         }
     }
  
+    //    MARK: - IBActions
+
     @IBAction func cancelPressed(_ sender: UIStoryboardSegue) {
         
     }

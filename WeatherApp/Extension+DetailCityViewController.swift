@@ -29,14 +29,14 @@ extension DetailCityViewController {
         }
         
         pressureLabel.text = "Pressure: " + (currentWeather.main?.pressure!.description)! + " mm"
-        windLabel.text = "Wind " + (currentWeather.wind?.speed!.description)! + " m/c"
+        windLabel.text = "Wind: " + (currentWeather.wind?.speed!.description)! + " m/c"
         humidityLabel.text = "Humidity: " + (currentWeather.main?.humidity!.description)! + " %"
         
     }
     
     func configureForecastUI(cell: UITableViewCell, with result: ForecastWeatherCity.List) {
         
-        cell.textLabel?.text = result.dt_txt
+        cell.textLabel?.text = getDateFromTimeStamp(timeStamp: result.dt!)
         cell.detailTextLabel?.text = (result.main?.temp!.description)! + " ℃"
         
         let icon = result.weather![0].icon
@@ -47,5 +47,17 @@ extension DetailCityViewController {
             let image = UIImage(data: imageData)
             cell.imageView!.image = image
         }
+    }
+    
+    func getDateFromTimeStamp(timeStamp: Int) -> String {
+        
+        let date = Date(timeIntervalSince1970: TimeInterval(timeStamp))
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale.current
+        dateFormatter.dateFormat = "dd MMM, hh:mm"
+        
+        let dateString = dateFormatter.string(from: date)
+        return dateString
     }
 }
